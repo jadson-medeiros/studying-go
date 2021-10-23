@@ -4,6 +4,8 @@
 *.dll
 *.so
 *.dylib
+.idea/
+*.iml
 
 # Test binary, built with `go test -c`
 *.test
@@ -13,3 +15,49 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Binary/package folder\
+[Bb]in/
+pkg/
+
+# Visual Studio Code cache/options directory
+.vscode/
+
+# Haskell
+.conf
+*.o
+*.hi
+*.chi
+*.chs.h
+*.imports
+cabal.sandbox.config
+cabal.config
+
+# Dirs
+.cabal-sandbox
+dist
+vendor
+.vagrant.d
+.stack-work
+bin
+/doc
+
+# CTAGS
+TAGS
+tags
+
+# Emacs/Vim
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+*.org
+.projectile
+
+# OSX
+.DS_Store
+
+# Certificates
+*.pem
