@@ -3,8 +3,10 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -101,13 +103,19 @@ func readSitesFromFile() []string {
 
 	reader := bufio.NewReader(file)
 
-	row, err := reader.ReadString('\n')
-
 	if err != nil {
 		fmt.Println("Error:", err)
 	}
+	for {
+		row, err := reader.ReadString('\n')
+		row = strings.TrimSpace(row)
+		sites = append(sites, row)
+		if err == io.EOF {
+			break
+		}
+	}
 
-	fmt.Println(row)
+	file.Close()
 
 	return sites
 }
