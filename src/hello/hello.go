@@ -92,7 +92,6 @@ func testSite(site string) {
 }
 
 func readSitesFromFile() []string {
-
 	var sites []string
 	file, err := os.Open("sites.txt")
 
