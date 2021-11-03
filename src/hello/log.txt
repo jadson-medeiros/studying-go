@@ -1,0 +1,12 @@
+02/11/2021 23:49:21 - https://random-status-code.herokuapp.com - online: true
+02/11/2021 23:49:22 - https://www.youtube.com - online: true
+02/11/2021 23:49:22 - https://www.google.com - online: true
+02/11/2021 23:49:22 - https://www.github.com - online: true
+02/11/2021 23:49:28 - https://random-status-code.herokuapp.com - online: false
+02/11/2021 23:49:28 - https://www.youtube.com - online: true
+02/11/2021 23:49:28 - https://www.google.com - online: true
+02/11/2021 23:49:28 - https://www.github.com - online: true
+02/11/2021 23:49:34 - https://random-status-code.herokuapp.com - online: false
+02/11/2021 23:49:34 - https://www.youtube.com - online: true
+02/11/2021 23:49:34 - https://www.google.com - online: true
+02/11/2021 23:49:34 - https://www.github.com - online: true
