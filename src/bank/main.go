@@ -9,12 +9,23 @@ type CheckingAccount struct {
 	balance       float64
 }
 
-func main() {
-	rhysAccount := CheckingAccount{"Rhys",
-		672,
-		456321,
-		145.98,
+func (c *CheckingAccount) Withdraw(withdrawalAmount float64) string {
+	canDraw := withdrawalAmount > 0 && withdrawalAmount <= c.balance
+	if canDraw {
+		c.balance -= withdrawalAmount
+		return "Successful withdrawal"
+	} else {
+		return "Insufficient funds"
 	}
+}
 
-	fmt.Println(rhysAccount)
+func main() {
+	jasonAccount := CheckingAccount{}
+	jasonAccount.owner = "Jason"
+	jasonAccount.balance = 376.32
+
+	fmt.Println(jasonAccount.balance)
+
+	fmt.Println(jasonAccount.Withdraw(100))
+	fmt.Println(jasonAccount.balance)
 }
