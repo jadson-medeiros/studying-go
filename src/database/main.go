@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"log"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/google/uuid"
@@ -25,8 +26,7 @@ func NewProduct(name string, price float64) *Product {
 func main() {
 	db, err := sql.Open("mysql", "root:root@tcp(localhost:3306)/godatabase")
 	if err != nil {
-		panic(err)
-
+		log.Fatalf("error with db connection: %s", err)
 	}
 
 	defer db.Close()
@@ -35,27 +35,32 @@ func main() {
 	err = insertProduct(db, product)
 
 	if err != nil {
-		panic(err)
+		log.Fatalf("error inserting products: %s", err)
 	}
 	product.Price = 100.0
 
 	err = updateProduct(db, product)
 	if err != nil {
-		panic(err)
+		log.Fatalf("error updating product: %s", err)
 	}
 
 	p, err := selectProduct(db, product.ID)
 	if err != nil {
-		panic(err)
+		log.Fatalf("error select products: %s", err)
 	}
 	fmt.Printf("Product: %v, price: %.2f\n", p.Name, p.Price)
 
 	products, err := selectAllProducts(db)
 	if err != nil {
-		panic(err)
+		log.Fatalf("error selecting all products: %s", err)
 	}
 	for _, product := range products {
 		fmt.Printf("Product: %v, price: %.2f\n", product.Name, product.Price)
+	}
+
+	err = deleteProduct(db, product.ID)
+	if err != nil {
+		log.Fatalf("error deleting the product: %s", err)
 	}
 }
 
@@ -121,4 +126,18 @@ func selectAllProducts(db *sql.DB) ([]Product, error) {
 	}
 
 	return products, nil
+}
+
+func deleteProduct(db *sql.DB, id string) error {
+	stmt, err := db.Prepare("delete from products where id = ?")
+	if err != nil {
+		return err
+	}
+
+	defer stmt.Close()
+	_, err = stmt.Exec(id)
+	if err != nil {
+		return err
+	}
+	return nil
 }
