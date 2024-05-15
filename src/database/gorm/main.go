@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"gorm.io/driver/mysql"
@@ -12,10 +11,11 @@ type Product struct {
 	ID int `gorm:"primaryKey"`
 	Name string
 	Price float64
+	gorm.Model
 }
 
 func main() {
-	dsn := "root:root@tcp(localhost:3306)/godatabase"
+	dsn := "root:root@tcp(localhost:3306)/godatabase?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("error with db connection: %s", err)
@@ -73,13 +73,13 @@ func main() {
 // 		fmt.Println(product)
 // 	}
 
-	var p Product
-	db.First(&p, 12)
-	p.Name = "New Mouse"
-	db.Save(&p)
+	// var p Product
+	// db.First(&p, 1)
+	// p.Name = "New Mouse"
+	// db.Save(&p)
 
-	var p2 Product
-	db.First(&p2, 12)
-	fmt.Println(p2.Name)
-	db.Delete(&p2)
+	// var p2 Product
+	// db.First(&p2, 1)
+	// fmt.Println(p2.Name)
+	// db.Delete(&p2)
 }
