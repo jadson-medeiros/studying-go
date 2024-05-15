@@ -11,7 +11,14 @@ type Product struct {
 	ID int `gorm:"primaryKey"`
 	Name string
 	Price float64
+	CategoryID int
+	Category Category
 	gorm.Model
+}
+
+type Category struct {
+	ID int `gorm:"primaryKey"`
+	Name string
 }
 
 func main() {
@@ -21,7 +28,7 @@ func main() {
 		log.Fatalf("error with db connection: %s", err)
 	}
 
-	db.AutoMigrate(&Product{})
+	db.AutoMigrate(&Product{}, &Category{})
 
 	// create
 	// db.Create(&Product{
