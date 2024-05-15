@@ -45,11 +45,41 @@ func main() {
 	// db.First(&product, "name = ?", "Mouse")
 	// fmt.Println(product)
 
-	// select all
-	var products []Product
+	// // select all
+	// var products []Product
 
-	db.Find(&products)
-	for _, product := range products {
-		fmt.Println(product)
-	}
+	// db.Find(&products)
+	// for _, product := range products {
+	// 	fmt.Println(product)
+	// }
+
+	// var products []Product
+
+	// db.Limit(2).Offset(2).Find(&products)
+	// for _, product := range products {
+	// 	fmt.Println(product)
+	// }
+
+	// where
+	// var products []Product
+	// db.Where("price > ?", 100).Find(&products)
+	// for _, product := range products {
+	// 	fmt.Println(product)
+	// }
+	
+// 	var products []Product
+// 	db.Where("name LIKE ?", "%book%").Find(&products)
+// 	for _, product := range products {
+// 		fmt.Println(product)
+// 	}
+
+	var p Product
+	db.First(&p, 12)
+	p.Name = "New Mouse"
+	db.Save(&p)
+
+	var p2 Product
+	db.First(&p2, 12)
+	fmt.Println(p2.Name)
+	db.Delete(&p2)
 }
